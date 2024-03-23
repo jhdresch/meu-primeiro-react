@@ -1,51 +1,55 @@
 import React, { Component } from "react";
 
 class App extends Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
-            nome: 'Jair',
-            idade: 40,
-            contador: 0
+            hora: '00:00:00'
         }
-        this.aumentar = this.aumentar.bind(this);
-        this.diminuir = this.diminuir.bind(this);
+    }
+    // acionando antes de montar o dom
+    componentWillMount() {
+        alert('Antes de montar o dom');
     }
 
-    diminuir() {
-        let state = this.state;
-        if (state.contador === 0) {
-            alert("Contador chegou a zero !!!");
-            return;
 
-        }
-        state.contador -= 1;
-        this.setState(state)
+    // acionando depois de montar o dom
+    componentDidMount() {
+
+        setInterval(() => {
+            this.setState({
+                hora: new Date().toLocaleTimeString()
+            })
+        }, 1000);
+
     }
 
-    aumentar() {
-        let state = this.state;
-        state.contador += 1;
-        this.setState(state)
+    // ativa quando componente é atualizado
+    componentDidUpdate() {
+        console.log('Atualizou hora: ' + this.state.hora);
+    }
+
+    // É executado somente quando shouldComponentUpdate devolver true.
+    // shouldComponentUpdate() {
+
+    //     console.log('Faz algo caso queira depois de atualizar componnte');
+    // }
+
+
+    // acionando depois de desmontar o dom
+    componentWillUnmount() {
+        console.log('Dom desmontado')
     }
 
 
     render() {
         return (
             <div>
-                <h1>Usando State</h1>
-                <h2>Nome: {this.state.nome}</h2>
-                <h2>Idade: {this.state.idade}</h2>
-                <h2>contador</h2>
-                <button onClick={this.diminuir}> - </button>{this.state.contador} <button onClick={this.aumentar} > + </button>
+                <h1>Ciclo de vida</h1>
+                <h2>Hora: {this.state.hora}</h2>
             </div>
         );
     }
-
-
-
 }
 
-export default App; 
+export default App;
