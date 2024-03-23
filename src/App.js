@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Membro from "./components/Membros";
 class App extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,7 @@ class App extends Component {
     }
     // acionando antes de montar o dom
     componentWillMount() {
-        alert('Antes de montar o dom');
+        console.log('Antes de montar o dom');
     }
 
 
@@ -47,6 +47,7 @@ class App extends Component {
             <div>
                 <h1>Ciclo de vida</h1>
                 <h2>Hora: {this.state.hora}</h2>
+                <Membro membro='Visitante' />
             </div>
         );
     }
