@@ -1,65 +1,51 @@
 import React, { Component } from "react";
 
+class App extends Component {
 
 
-class Equipe2 extends Component {
-  render() {
-    return (
-      <div>
-        <h1> usando classe</h1>
-        <h2>meu cardo é {this.props.cargo}</h2>
-      </div>
-    );
-  }
-}
+    constructor(props) {
+        super(props);
+        this.state = {
+            nome: 'Jair',
+            idade: 40,
+            contador: 0
+        }
+        this.aumentar = this.aumentar.bind(this);
+        this.diminuir = this.diminuir.bind(this);
+    }
+
+    diminuir() {
+        let state = this.state;
+        if (state.contador === 0) {
+            alert("Contador chegou a zero !!!");
+            return;
+
+        }
+        state.contador -= 1;
+        this.setState(state)
+    }
+
+    aumentar() {
+        let state = this.state;
+        state.contador += 1;
+        this.setState(state)
+    }
 
 
-const BemVindo = (props) => <h2>Bem Vindo {props.nome}</h2>
-
-const BemVindo2 = (props) => {
-  return (
-    <div>
-      <h2>Bem Vindo 2 {props.nome1}</h2>
-      <h1>Bem Vindo 2 {props.nome2}</h1>
-    </div>
-  )
-}
-
-const Sobre = (props) => {
-  return (
-    <div>
-      <h3>Meu nome é {props.nome}.  </h3>
-      <h4>Minha idade é {props.idade} anos.</h4>
-      <h4>Cargo: {props.cargo}.</h4>
-    </div>
-  );
-}
-
-const Equipe = (props) => {
-  return (
-    <Sobre nome={props.nome} idade={props.idade} cargo={props.cargo} />
-  );
-}
-
-function App() {
-  return (
-
-    <><div>
-      <h1>Ola Mundo</h1>
-      <BemVindo nome='Jair' />
-      <BemVindo2 nome1='Maria' nome2='Jose' />
-    </div>
-      <div>
-        <h1>Conheça nossa equipe</h1>
-        <Equipe nome="Jair" idade="40" cargo="TL" />
-
-      </div></>
+    render() {
+        return (
+            <div>
+                <h1>Usando State</h1>
+                <h2>Nome: {this.state.nome}</h2>
+                <h2>Idade: {this.state.idade}</h2>
+                <h2>contador</h2>
+                <button onClick={this.diminuir}> - </button>{this.state.contador} <button onClick={this.aumentar} > + </button>
+            </div>
+        );
+    }
 
 
-  );
 
 }
 
-
-
-export default App;
+export default App; 
