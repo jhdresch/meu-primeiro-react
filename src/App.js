@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Membro from "./components/Membros";
+import RenderizacaoCondicional from "components/RenderizacaoCondicional";
+
+
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -48,6 +52,8 @@ class App extends Component {
                 <h1>Ciclo de vida</h1>
                 <h2>Hora: {this.state.hora}</h2>
                 <Membro membro='Visitante' />
+                <hr></hr>
+                <RenderizacaoCondicional />
             </div>
         );
     }
